@@ -7,8 +7,7 @@ public class Chequing extends Account{
     }
 
     public Chequing(Chequing source){
-       super(source);
-       
+       super(source); 
     }
 
 

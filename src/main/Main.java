@@ -12,7 +12,7 @@ public class Main {
    static String TRANSACTIONS_FILE = "src/main/data/transactions.txt";
 
     public static void main(String[] args) {
-        Chequing chequing = new Chequing("1", "Michael Scott", 1524.51);
+        Chequing chequing = new Chequing("1", "Michael Scott", -1524.51);
         Savings savings = new Savings("2", "Saul Goodman", 2241.60);
         Loan loan = new Loan("3", "Pheobe Buffay", 2537.31);
         System.out.println(loan);
