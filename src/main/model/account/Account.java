@@ -52,6 +52,10 @@ public abstract class Account {
             throw new IllegalArgumentException("CANNOT BE NULL OR BLANK");
         }
     }
+
+    public abstract void deposit(double amount);
+
+    public abstract boolean withdraw(double amount);
  
 
 }
