@@ -8,7 +8,6 @@ public abstract class Account {
     public Account(String id, String name, double balance){
         checkString(id);
         checkString(name);
-        checkNum(balance);
         this.id = id;
         this.name = name;
         this.balance = balance;
@@ -31,7 +30,6 @@ public abstract class Account {
     }
 
     public void setId(String id) {
-        checkString(id);
         this.id = id;
     }
     public void setName(String name) {
@@ -39,7 +37,6 @@ public abstract class Account {
         this.name = name;
     }
     public void setBalance(double balance) {
-        checkNum(balance);
         this.balance = balance;
     }
     @Override
@@ -55,10 +52,6 @@ public abstract class Account {
             throw new IllegalArgumentException("CANNOT BE NULL OR BLANK");
         }
     }
-    public void checkNum(double balance){
-        if (balance < 0 ){
-            throw new IllegalArgumentException("BALANCE CANNOT BE LESS THAN 0");
-        }
-    }
+ 
 
 }
