@@ -1,5 +1,7 @@
 package src.main.model.account;
 
+import java.text.DecimalFormat;
+
 public abstract class Account {
     private String id;
     private String name;
@@ -56,6 +58,11 @@ public abstract class Account {
     public abstract void deposit(double amount);
 
     public abstract boolean withdraw(double amount);
+
+    protected double round(double amount) {
+        DecimalFormat formatter = new DecimalFormat("#.##");
+        return Double.parseDouble(formatter.format(amount));
+    }
  
 
 }

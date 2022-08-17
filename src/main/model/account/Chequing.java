@@ -10,5 +10,15 @@ public class Chequing extends Account{
        super(source); 
     }
 
+    @Override
+    public void deposit(double amount) {
+        
+    
+    }
 
+    @Override
+    public boolean withdraw(double amount) {
+        // TODO Auto-generated method stub
+        return false;
+    }
 }
