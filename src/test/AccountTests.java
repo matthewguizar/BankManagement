@@ -49,11 +49,11 @@ public class AccountTests {
 
     }
 
-   // @Test
-   // public void withdrawalInterest(){
-   //    accounts[2].withdraw(2434.31);
-   //    assertEquals(5020.31, accounts[2].getBalance());
-   // }
+   @Test
+   public void withdrawalInterest(){
+      accounts[2].withdraw(2434.31);
+      assertEquals(5020.31, accounts[2].getBalance());
+   }
 
    // @Test
    // public void withdrawalLimit(){

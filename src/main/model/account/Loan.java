@@ -1,6 +1,7 @@
 package src.main.model.account;
 
 public class Loan extends Account{
+    private static final double INTEREST_RATE = 0.02;
     public Loan(String id, String name, double balance){
         super(id, name, balance);
     }
@@ -17,7 +18,7 @@ public class Loan extends Account{
 
     @Override
     public boolean withdraw(double amount) {
-        super.setBalance(super.round(super.getBalance() - amount));
+        super.setBalance(super.round(super.getBalance() + amount + (amount * INTEREST_RATE)));
        return true;
     }
 
