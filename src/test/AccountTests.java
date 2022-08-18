@@ -42,12 +42,12 @@ public class AccountTests {
       assertEquals(1524.51, accounts[0].getBalance());
    }
 
-   // @Test
-   // public void withdrawalFee(){
-   //    accounts[1].withdraw(100);
-   //    assertEquals(2136.60, accounts[1].getBalance());
+   @Test
+   public void withdrawalFee(){
+      accounts[1].withdraw(100);
+      assertEquals(2136.60, accounts[1].getBalance());
 
-   // }
+    }
 
    // @Test
    // public void withdrawalInterest(){
