@@ -17,8 +17,8 @@ public class Loan extends Account{
 
     @Override
     public boolean withdraw(double amount) {
-        // TODO Auto-generated method stub
-        return false;
+        super.setBalance(super.round(super.getBalance() - amount));
+       return true;
     }
 
 }

@@ -18,7 +18,7 @@ public class Chequing extends Account{
 
     @Override
     public boolean withdraw(double amount) {
-       super.setBalance(super.getBalance() - amount);
+       super.setBalance(super.round(super.getBalance() - amount));
        return true;
     }
 }
