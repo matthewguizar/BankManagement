@@ -80,7 +80,7 @@ public class AccountTests {
       double income = 4000;
       accounts[0].deposit(income);
       ((Taxable)accounts[0]).tax(income);
-      assertEquals(5374, accounts[0].getBalance());
+      assertEquals(5374.51, accounts[0].getBalance());
    }
  
 
