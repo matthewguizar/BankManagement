@@ -50,6 +50,10 @@ public class Chequing extends Account implements Taxable{
         super.setBalance(super.round(super.getBalance() - tax));
 
     }
+    @Override
+    public Account clone() {
+        return new Chequing(this);
+    }
 
     
 }

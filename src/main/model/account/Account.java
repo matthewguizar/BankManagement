@@ -63,6 +63,7 @@ public abstract class Account {
         DecimalFormat formatter = new DecimalFormat("#.##");
         return Double.parseDouble(formatter.format(amount));
     }
+    public abstract Account clone();
  
 
 }

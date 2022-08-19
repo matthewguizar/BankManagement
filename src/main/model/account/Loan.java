@@ -26,5 +26,9 @@ public class Loan extends Account{
         super.setBalance(super.round(super.getBalance() + amount + (amount * INTEREST_RATE)));
        return true;
     }
+    @Override
+    public Account clone() {
+        return new Loan(this);
+    }
 
 }

@@ -21,5 +21,9 @@ public class Savings extends Account {
         super.setBalance(super.round(super.getBalance() - amount - WITHDRAWAL_FEE));
        return true;
     }
+    @Override
+    public Account clone() {
+        return new Savings(this);
+    }
 
 }

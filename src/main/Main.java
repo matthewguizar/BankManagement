@@ -2,6 +2,7 @@ package src.main;
 
 import java.util.concurrent.TimeUnit;
 
+import src.main.model.account.Account;
 import src.main.model.account.Chequing;
 import src.main.model.account.Loan;
 import src.main.model.account.Savings;
@@ -12,12 +13,11 @@ public class Main {
    static String TRANSACTIONS_FILE = "src/main/data/transactions.txt";
 
     public static void main(String[] args) {
-        Chequing chequing = new Chequing("1", "Michael Scott", -1524.51);
-        Savings savings = new Savings("2", "Saul Goodman", 2241.60);
-        Loan loan = new Loan("3", "Pheobe Buffay", 2537.31);
-        System.out.println(loan);
-        System.out.println(savings);
-        System.out.println(chequing);
+        Chequing chequing = new Chequing("f84c43f4-a634-4c57-a644-7602f8840870", "Michael Scott", 1524.51);
+        Account chequingCopy = chequing.clone();
+      
+        Savings savings = new Savings("ce07d7b3-9038-43db-83ae-77fd9c0450c9", "Saul Goodman", 2241.60);
+        Account savingsCopy = savings.clone();
 
 
     }

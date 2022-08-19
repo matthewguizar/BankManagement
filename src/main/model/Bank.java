@@ -14,4 +14,8 @@ public class Bank {
         accounts = new ArrayList<Account>();
         transactions = new ArrayList<Transaction>();
     }
+
+    public void addAccount(Account account){
+        accounts.add(account.clone());
+    }
 }
