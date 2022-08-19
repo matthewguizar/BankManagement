@@ -12,6 +12,8 @@ public class Transaction implements Comparable<Transaction> {
     private double amount;
 
     public Transaction(Type type, long timestamp, String id, double amount){
+       checkId(id);
+       checkAmount(amount);
         this.type = type;
         this.timestamp = timestamp;
         this.id = id;
@@ -45,6 +47,7 @@ public class Transaction implements Comparable<Transaction> {
     }
 
     public void setId(String id) {
+        checkId(id);
         this.id = id;
     }
 
@@ -53,6 +56,7 @@ public class Transaction implements Comparable<Transaction> {
     }
 
     public void setAmount(double amount) {
+        checkAmount(amount);
         this.amount = amount;
     }
 
@@ -91,6 +95,18 @@ public class Transaction implements Comparable<Transaction> {
         "\t" + this.returnDate() + "" +
         "\t" + id + "" +
         "\t$" + amount + "";
+    }
+
+    public void checkId(String id){
+        if(id == null || id.isBlank()){
+            throw new IllegalArgumentException("invalid id");
+        }
+
+    }
+    public void checkAmount(double amount){
+        if (amount < 0){
+            throw new IllegalArgumentException("invalid amount");
+        }
     }
   
 
