@@ -41,7 +41,10 @@ public class Chequing extends Account implements Taxable{
         //if income is smaller than taxable_income(3000) than zero is returned
         // double tax = Math.max(0, income - TAXABLE_INCOME) * TAX_RATE;
         double tax = 0;
+        
        if (income > TAXABLE_INCOME){
+        //once income is over Taxable income, 3000 is subtracted from it
+        //in order to see how much is to be taxed because that is the amount over 3000
         tax = (income - TAXABLE_INCOME )* TAX_RATE;
        }
         super.setBalance(super.round(super.getBalance() - tax));
