@@ -1,7 +1,11 @@
 package src.main.model;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Objects;
+
 public class Transaction {
-    private enum Type{WITHDRAW, DEPOSIT;}
+    public enum Type{WITHDRAW, DEPOSIT};
     private Type type;
     private long timestamp;
     private String id;
@@ -51,6 +55,29 @@ public class Transaction {
     public void setAmount(double amount) {
         this.amount = amount;
     }
+
+    public String returnDate(){
+        //creating date object from timestamp
+        Date date = new Date(this.timestamp * 1000);// converting seconds to milliseconds
+        return new SimpleDateFormat("dd-MM-yyy").format(date);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Transaction)) {
+            return false;
+        }
+        Transaction transaction = (Transaction) o;
+        return Objects.equals(type, transaction.type) && timestamp == transaction.timestamp && Objects.equals(id, transaction.id) && amount == transaction.amount;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type, timestamp, id, amount);
+    }
+    
   
 
 }
