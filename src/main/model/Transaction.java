@@ -13,6 +13,12 @@ public class Transaction {
         this.id = id;
         this.amount = amount;
     }
+    public Transaction(Transaction source){
+        this.type = source.type;
+        this.timestamp = source.timestamp;
+        this.id = source.id;
+        this.amount = source.amount;
+    }
 
     public Type getType() {
         return this.type;
