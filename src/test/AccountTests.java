@@ -68,11 +68,11 @@ public class AccountTests {
 
    }
 
-   // @Test
-   // public void loanDeposit(){
-   //    accounts[2].deposit(1000);
-   //    assertEquals(1537.31, accounts[2].getBalance());
-   // }
+   @Test
+   public void loanDeposit(){
+      accounts[2].deposit(1000);
+      assertEquals(1537.31, accounts[2].getBalance());
+   }
 
 
  
