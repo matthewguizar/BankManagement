@@ -8,6 +8,7 @@ import src.main.model.account.Account;
 import src.main.model.account.Chequing;
 import src.main.model.account.Loan;
 import src.main.model.account.Savings;
+import src.main.model.account.impl.Taxable;
 
 
 public class AccountTests {
@@ -74,7 +75,13 @@ public class AccountTests {
       assertEquals(1537.31, accounts[2].getBalance());
    }
 
-
+   @Test
+   public void incomeTax(){
+      double income = 4000;
+      accounts[0].deposit(income);
+      ((Taxable)accounts[0]).tax(income);
+      assertEquals(5374, accounts[0].getBalance());
+   }
  
 
 }
