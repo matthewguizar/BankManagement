@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            createObject(new String[] {"Chequing","f84c43f4-a634-4c57-a644-7602f8840870","Michael Scott","1524.51"});
+           Account account = createObject(new String[] {"Chequing","f84c43f4-a634-4c57-a644-7602f8840870","Michael Scott","1524.51"});
             
         } catch (Exception e) {
             System.out.println(e.getMessage());
