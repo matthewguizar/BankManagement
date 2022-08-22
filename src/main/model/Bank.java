@@ -20,12 +20,25 @@ public class Bank {
     public void addAccount(Account account){
         accounts.add(account.clone());
     }
-
-    public void addTransaction(Transaction transaction){
+    //other classes shouldn't have access to this method. only bank can add transaction
+    private void addTransaction(Transaction transaction){
         transactions.add(new Transaction(transaction));
     }
 
-    public Transaction[] getTransactions(String accountId){
+    public void withdrawTransaction(Transaction transaction){
+        if (getAccount(transaction.getId()).withdraw(transaction.getAmount())) {
+            addTransaction(transaction);
+        }
+    }
+
+    public void depositTransaction(Transaction transaction){
+        getAccount(transaction.getId()).deposit(transaction.getAmount());
+            addTransaction(transaction);
+        
+    }
+
+    //creating array that gets a specific accounts transactions 
+    public Transaction[] getTransactions(String accountId){ //placed into an array
         //
         List<Transaction> list =this.transactions.stream() //streaming all elements in transaction
         .filter((transaction ) -> transaction.getId().equals(accountId)) //filtering through accountIds that match one passed in
@@ -33,5 +46,12 @@ public class Bank {
         return list.toArray(new Transaction[list.size()]); //using toArray and putting in what type to cast it into and size
 
     }
+
+    public Account getAccount(String transactionId){
+        return accounts.stream()
+        .filter((account) -> account.getId().equals(transactionId))
+        .findFirst()
+        .orElse(null);
+    };
 
 }
