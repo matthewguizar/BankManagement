@@ -3,10 +3,12 @@ package src.main;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import src.main.model.Bank;
+import src.main.model.Transaction;
 import src.main.model.account.Account;
 
 
@@ -53,6 +55,22 @@ public class Main {
         }
         scan.close();
         return accounts;
+    }
+
+    public static ArrayList<Transaction> returnTransactions() throws FileNotFoundException {
+        FileInputStream fis = new FileInputStream(TRANSACTIONS_FILE);
+        Scanner scan = new Scanner(fis);
+
+        ArrayList<Transaction> transactions = new ArrayList<Transaction>();
+
+        while(scan.hasNextLine()) {
+            String[] values = scan.nextLine().split(",");
+            transactions.add(new Transaction(Transaction.Type.valueOf(values[1]), Long.parseLong(values[0]), values[2], Double.parseDouble(values[3])));
+        
+        }
+        Collections.sort(transactions);
+        scan.close();
+        return transactions;
     }
 
     /**
