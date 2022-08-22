@@ -1,5 +1,9 @@
 package src.main;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import src.main.model.Bank;
@@ -14,18 +18,41 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-           Account account = createObject(new String[] {"Chequing","f84c43f4-a634-4c57-a644-7602f8840870","Michael Scott","1524.51"});
-            
-        } catch (Exception e) {
+            ArrayList<Account> accounts = returnAccounts();
+        } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
 
     }
 
-    public static Account createObject(String[] values) throws Exception{
-        return (Account) Class.forName("src.main.model.account." + values[0])
-          .getConstructor(String.class, String.class, double.class)
-          .newInstance(values[1], values[2], Double.parseDouble(values[3]));
+    public static Account createObject(String[] values) {
+        try {
+            return (Account) Class.forName("src.main.model.account." + values[0])
+              .getConstructor(String.class, String.class, double.class)
+              .newInstance(values[1], values[2], Double.parseDouble(values[3]));
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    public static void loadAccounts(ArrayList<Account> accounts) {
+        for (Account account : accounts) {
+            bank.addAccount(account);
+        }
+    }
+
+    public static ArrayList<Account> returnAccounts() throws FileNotFoundException {
+        FileInputStream fis = new FileInputStream(ACCOUNTS_FILE);
+        Scanner scan = new Scanner(fis);
+        ArrayList<Account> accounts = new ArrayList<Account>();
+
+        while (scan.hasNextLine()) {
+            accounts.add(createObject(scan.nextLine().split(",")));
+        }
+        scan.close();
+        return accounts;
     }
 
     /**
