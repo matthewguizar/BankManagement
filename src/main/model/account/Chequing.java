@@ -24,9 +24,10 @@ public class Chequing extends Account implements Taxable{
 
     @Override
     public boolean withdraw(double amount) {
+
         if (super.getBalance() - amount < OVERDRAFT_LIMIT){
             return false;
-        } else if( super.getBalance() - amount < 0 || super.getBalance() - amount > 200){
+        } else if (super.getBalance() - amount < 0){
             super.setBalance(super.round(super.getBalance() - amount - OVERDRAFT_FEE));
             return true;
         } else {

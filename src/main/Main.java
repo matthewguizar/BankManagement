@@ -3,11 +3,8 @@ package src.main;
 import java.util.concurrent.TimeUnit;
 
 import src.main.model.Bank;
-import src.main.model.Transaction;
 import src.main.model.account.Account;
-import src.main.model.account.Chequing;
-import src.main.model.account.Loan;
-import src.main.model.account.Savings;
+
 
 public class Main {
 
@@ -16,7 +13,19 @@ public class Main {
    private static Bank bank = new Bank();
 
     public static void main(String[] args) {
+        try {
+            createObject(new String[] {"Chequing","f84c43f4-a634-4c57-a644-7602f8840870","Michael Scott","1524.51"});
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
+    }
+
+    public static Account createObject(String[] values) throws Exception{
+        return (Account) Class.forName("src.main.model.account." + values[0])
+          .getConstructor(String.class, String.class, double.class)
+          .newInstance(values[1], values[2], Double.parseDouble(values[3]));
     }
 
     /**
