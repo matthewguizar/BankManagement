@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import src.main.model.Transaction.Type;
 import src.main.model.account.Account;
 
 public class Bank {
@@ -25,16 +26,23 @@ public class Bank {
         transactions.add(new Transaction(transaction));
     }
 
-    public void withdrawTransaction(Transaction transaction){
+    private void withdrawTransaction(Transaction transaction){
         if (getAccount(transaction.getId()).withdraw(transaction.getAmount())) {
             addTransaction(transaction);
         }
     }
 
-    public void depositTransaction(Transaction transaction){
+    private void depositTransaction(Transaction transaction){
         getAccount(transaction.getId()).deposit(transaction.getAmount());
             addTransaction(transaction);
         
+    }
+
+    public void excecuteTransaction(Transaction transaction){
+        switch(transaction.getType()) {
+            case WITHDRAW: withdrawTransaction(transaction); break;
+            case DEPOSIT: depositTransaction(transaction); break;
+        }
     }
 
     //creating array that gets a specific accounts transactions 
