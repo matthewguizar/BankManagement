@@ -21,17 +21,28 @@ public class Main {
     public static void main(String[] args) {
         try {
             ArrayList<Account> accounts = returnAccounts();
-        } catch (FileNotFoundException e) {
+            loadAccounts(accounts);
+
+            ArrayList<Transaction> transactions = returnTransactions();
+            runTransactions(transactions);
+            bank.deductTaxes();
+            for (Account account : accounts) {
+                System.out.println("\n\t\t\t\t\t ACCOUNT\n\n\t"+account+"\n\n");
+                transactionHistory(account.getId());
+            }
+            
+         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
-
     }
 
     public static Account createObject(String[] values) {
         try {
-            return (Account) Class.forName("src.main.model.account." + values[0])
-              .getConstructor(String.class, String.class, double.class)
-              .newInstance(values[1], values[2], Double.parseDouble(values[3]));
+            //drilling into where the account classes are located and type casting to account
+            return (Account) Class.forName("src.main.model.account." + values[0]) //using first element to detect what type of account
+              .getConstructor(String.class, String.class, double.class) //getting constructor
+              .newInstance(values[1], values[2], Double.parseDouble(values[3])); //using values from argument to create new object of particular class
+    
             
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -68,10 +79,28 @@ public class Main {
             transactions.add(new Transaction(Transaction.Type.valueOf(values[1]), Long.parseLong(values[0]), values[2], Double.parseDouble(values[3])));
         
         }
-        Collections.sort(transactions);
         scan.close();
+        Collections.sort(transactions);
         return transactions;
     }
+
+    public static void runTransactions(ArrayList<Transaction> transactions) {
+        for (Transaction transaction : transactions) {
+            bank.excecuteTransaction(transaction);
+        }
+    }
+
+    //gets every single transaction that belongs to a certain account
+    //print transaction history
+    public static void transactionHistory(String id){
+        System.out.println("\t\t\t\t   TRANSACTION HISTORY\n\t");
+        for (Transaction transaction: bank.getTransactions(id)) {
+            wait(300);
+            System.out.println("\t" + transaction + "\n");
+        }
+        System.out.println("\n\t\t\t\tAFTER TAX\n");
+        System.out.println("\t" + bank.getAccount(id) + "\n\n\n\n");
+    }   
 
     /**
      * Function name: wait
